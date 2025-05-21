@@ -1,0 +1,169 @@
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T07:31:46.346Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T07:31:47.081Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T07:31:48.189Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T07:31:51.852Z"}
+{"level":"info","message":"Connected to RabbitMQ","timestamp":"2025-05-17T07:31:55.874Z"}
+{"level":"info","message":"Notification service is running and waiting for messages","timestamp":"2025-05-17T07:31:55.875Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T07:34:27.453Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T07:34:28.305Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T07:34:30.585Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T07:34:32.723Z"}
+{"level":"info","message":"Connected to RabbitMQ","timestamp":"2025-05-17T07:34:36.380Z"}
+{"level":"info","message":"Notification service is running and waiting for messages","timestamp":"2025-05-17T07:34:36.381Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T07:34:48.010Z"}
+{"level":"info","message":"Email sent: <c683ed28-4e7d-6ab2-3df0-6ab79879e32f@gmail.com>","timestamp":"2025-05-17T07:34:50.280Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T07:35:19.121Z"}
+{"level":"info","message":"Email sent: <e90d50d5-ff5c-6e0c-b6f8-d66d004dd6c7@gmail.com>","timestamp":"2025-05-17T07:35:21.110Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T07:35:42.252Z"}
+{"level":"info","message":"Email sent: <5dc47629-2d47-e150-d584-2b2931d8f30f@gmail.com>","timestamp":"2025-05-17T07:35:44.051Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T07:36:03.129Z"}
+{"level":"info","message":"Email sent: <74db0c4d-3e91-5470-a35d-21fc024d785b@gmail.com>","timestamp":"2025-05-17T07:36:05.750Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T07:36:47.473Z"}
+{"level":"info","message":"Email sent: <f79228e0-1512-79b8-f5e2-e9d9583dcc48@gmail.com>","timestamp":"2025-05-17T07:36:49.857Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T07:37:20.849Z"}
+{"level":"info","message":"Email sent: <9dae2077-1585-c01b-553a-c1e173c9db9f@gmail.com>","timestamp":"2025-05-17T07:37:23.166Z"}
+{"level":"info","message":"Received message with routing key: schedule.created","timestamp":"2025-05-17T07:39:53.812Z"}
+{"level":"info","message":"Email sent: <72f9f620-5cd6-3aca-e03b-a667f397593e@gmail.com>","timestamp":"2025-05-17T07:39:56.229Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T07:47:57.880Z"}
+{"level":"info","message":"Email sent: <78e7c5f5-07ac-65a8-4c84-e009c7391d3b@gmail.com>","timestamp":"2025-05-17T07:48:00.327Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T08:01:49.349Z"}
+{"level":"info","message":"Email sent: <de807445-31e7-8c44-1805-bedc120ba8f8@gmail.com>","timestamp":"2025-05-17T08:01:51.356Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T08:04:33.631Z"}
+{"level":"info","message":"Email sent: <aedaf6f3-29e1-9354-c58f-ce2b4ceaf437@gmail.com>","timestamp":"2025-05-17T08:04:35.493Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T08:06:17.370Z"}
+{"level":"info","message":"Email sent: <1a44fbaa-4558-1444-e71d-c524c225893a@gmail.com>","timestamp":"2025-05-17T08:06:19.256Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T08:08:14.345Z"}
+{"level":"info","message":"Email sent: <a51fa825-bf96-746a-743c-1ebb6e3d09f6@gmail.com>","timestamp":"2025-05-17T08:08:16.409Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T08:11:18.795Z"}
+{"level":"info","message":"Email sent: <aacbcfd5-6301-6161-bf7c-4c46c25ebbc3@gmail.com>","timestamp":"2025-05-17T08:11:21.340Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T08:12:24.775Z"}
+{"level":"info","message":"Email sent: <bce2d685-e1c9-c35d-a06e-1edeac794312@gmail.com>","timestamp":"2025-05-17T08:12:26.836Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T08:15:13.523Z"}
+{"level":"info","message":"Email sent: <a5f94eec-ac74-1cb6-11b3-c0aeca43bea2@gmail.com>","timestamp":"2025-05-17T08:15:16.145Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:17.721Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:18.749Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:19.504Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:20.420Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:21.842Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:24.094Z"}
+{"level":"error","message":"RabbitMQ connection error: Channel ended, no reply will be forthcoming","timestamp":"2025-05-17T08:16:27.762Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:34.670Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:47.991Z"}
+{"level":"error","message":"RabbitMQ connection error: getaddrinfo ENOTFOUND rabbitmq","timestamp":"2025-05-17T08:17:13.990Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:17:41.450Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:17:43.204Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:17:57.360Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T08:18:32.406Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T08:18:33.591Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T08:18:35.328Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T08:18:36.549Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:18:39.762Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:18:43.381Z"}
+{"level":"error","message":"RabbitMQ connection error: getaddrinfo ENOTFOUND rabbitmq","timestamp":"2025-05-17T08:18:50.190Z"}
+{"level":"error","message":"RabbitMQ connection error: getaddrinfo ENOTFOUND rabbitmq","timestamp":"2025-05-17T08:19:03.426Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T08:19:42.809Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T08:19:44.486Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T08:19:47.194Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.4:5672","timestamp":"2025-05-17T08:39:06.859Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.4:5672","timestamp":"2025-05-17T08:39:07.696Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T08:39:37.573Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T08:39:38.628Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T08:39:39.541Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.4:5672","timestamp":"2025-05-17T08:39:43.498Z"}
+{"level":"error","message":"RabbitMQ connection error: getaddrinfo ENOTFOUND rabbitmq","timestamp":"2025-05-17T08:39:53.890Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:40:07.462Z"}
+{"level":"error","message":"RabbitMQ connection error: getaddrinfo ENOTFOUND rabbitmq","timestamp":"2025-05-17T08:40:33.482Z"}
+{"level":"error","message":"RabbitMQ connection error: getaddrinfo ENOTFOUND rabbitmq","timestamp":"2025-05-17T08:41:25.087Z"}
+{"level":"error","message":"RabbitMQ connection error: getaddrinfo ENOTFOUND rabbitmq","timestamp":"2025-05-17T08:42:25.448Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:45:26.521Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:45:27.176Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:45:28.003Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T08:48:11.745Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T08:48:12.387Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T08:48:13.203Z"}
+{"level":"info","message":"Connected to RabbitMQ","timestamp":"2025-05-17T08:48:20.032Z"}
+{"level":"info","message":"Notification service is running and waiting for messages","timestamp":"2025-05-17T08:48:20.033Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:48:30.945Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:48:31.801Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:48:36.400Z"}
+{"level":"info","message":"Connected to RabbitMQ","timestamp":"2025-05-17T08:48:39.994Z"}
+{"level":"info","message":"Notification service is running and waiting for messages","timestamp":"2025-05-17T08:48:39.995Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T08:51:52.620Z"}
+{"level":"error","message":"ok","timestamp":"2025-05-17T08:51:52.620Z"}
+{"level":"info","message":"Email sent: <ce90340e-b86c-d1bd-116c-584499596f34@gmail.com>","timestamp":"2025-05-17T08:51:54.924Z"}
+{"level":"info","message":"Received message with routing key: schedule.created","timestamp":"2025-05-17T08:54:00.538Z"}
+{"level":"info","message":"Email sent: <3225a5a3-5ea1-66c3-8561-068e79dca7a3@gmail.com>","timestamp":"2025-05-17T08:54:03.048Z"}
+{"level":"info","message":"Received message with routing key: schedule.deleted","timestamp":"2025-05-17T09:03:45.027Z"}
+{"level":"error","message":"Error processing message: Cannot read properties of undefined (reading 'id')","timestamp":"2025-05-17T09:03:45.031Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T09:05:16.218Z"}
+{"level":"error","message":"ok","timestamp":"2025-05-17T09:05:16.219Z"}
+{"level":"info","message":"Email sent: <33c8d6fa-84f2-88b8-7371-39bc413b827d@gmail.com>","timestamp":"2025-05-17T09:05:18.143Z"}
+{"level":"info","message":"Received message with routing key: schedule.deleted","timestamp":"2025-05-17T09:06:32.246Z"}
+{"level":"error","message":"Error processing message: Cannot read properties of undefined (reading 'id')","timestamp":"2025-05-17T09:06:32.247Z"}
+{"level":"info","message":"Received message with routing key: schedule.deleted","timestamp":"2025-05-17T09:16:29.308Z"}
+{"level":"error","message":"Error processing message: Cannot read properties of undefined (reading 'id')","timestamp":"2025-05-17T09:16:29.309Z"}
+{"level":"info","message":"Received message with routing key: schedule.deleted","timestamp":"2025-05-17T09:17:36.923Z"}
+{"level":"error","message":"Error processing message: Cannot read properties of undefined (reading 'id')","timestamp":"2025-05-17T09:17:36.924Z"}
+{"level":"info","message":"Received message with routing key: schedule.deleted","timestamp":"2025-05-17T09:19:40.549Z"}
+{"level":"error","message":"Error processing message: Cannot read properties of undefined (reading 'id')","timestamp":"2025-05-17T09:19:40.550Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T13:05:54.348Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.4:5672","timestamp":"2025-05-17T13:06:02.515Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.4:5672","timestamp":"2025-05-17T13:06:03.270Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.4:5672","timestamp":"2025-05-17T13:06:04.120Z"}
+{"level":"info","message":"Connected to RabbitMQ","timestamp":"2025-05-17T13:06:07.301Z"}
+{"level":"info","message":"Notification service is running and waiting for messages","timestamp":"2025-05-17T13:06:07.302Z"}
+{"level":"info","message":"Received message with routing key: schedule.deleted","timestamp":"2025-05-17T13:11:19.673Z"}
+{"level":"info","message":"delete [object Object]","timestamp":"2025-05-17T13:11:19.674Z"}
+{"level":"error","message":"ok2222","timestamp":"2025-05-17T13:11:19.675Z"}
+{"level":"error","message":"Error processing message: Cannot read properties of undefined (reading 'id')","timestamp":"2025-05-17T13:11:19.676Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.4:5672","timestamp":"2025-05-17T13:12:32.894Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.4:5672","timestamp":"2025-05-17T13:12:33.860Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.4:5672","timestamp":"2025-05-17T13:12:34.595Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.4:5672","timestamp":"2025-05-17T13:12:35.594Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.4:5672","timestamp":"2025-05-17T13:12:36.894Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.4:5672","timestamp":"2025-05-17T13:12:38.994Z"}
+{"level":"info","message":"Connected to RabbitMQ","timestamp":"2025-05-17T13:12:42.646Z"}
+{"level":"info","message":"Notification service is running and waiting for messages","timestamp":"2025-05-17T13:12:42.648Z"}
+{"level":"info","message":"Received message with routing key: schedule.deleted","timestamp":"2025-05-17T13:12:55.866Z"}
+{"level":"info","message":"Received content: {\"schedule_id\":28,\"start_time\":\"2025-05-29T17:39:00.000Z\",\"end_time\":\"2025-05-29T19:23:00.000Z\",\"normal_seat_price\":\"90000.00\",\"vip_seat_price\":\"99000.00\",\"movie\":{\"id\":10,\"name\":\"Get Out\",\"img\":\"https://m.media-amazon.com/images/M/MV5BMjUxMDQwNjcyNl5BMl5BanBnXkFtZTgwNzcwMzc0MTI@._V1_.jpg\",\"genre\":\"Horror, Mystery\",\"label\":\"Thriller\",\"duration\":104,\"description\":\"Một người đàn ông da đen đi thăm gia đình bạn gái của mình và phát hiện ra sự thật đáng sợ về gia đình cô.\",\"status\":\"coming soon\"},\"room\":{\"id\":9,\"name\":\"S-Room 3\",\"seats\":49,\"description\":\"Phòng chiếu cao cấp với trải nghiệm 4DX\",\"type\":\"4DX\",\"cinema\":{\"id\":3,\"name\":\"Star Cinema\",\"address\":\"99 Lê Lợi, Quận Hải Châu, Đà Nẵng\",\"description\":\"Rạp phim hiện đại với nhiều loại phòng chiếu khác nhau\"}}}","timestamp":"2025-05-17T13:12:55.867Z"}
+{"level":"error","message":"Content object does not have an id property","timestamp":"2025-05-17T13:12:55.867Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.3:5672","timestamp":"2025-05-17T13:15:01.452Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.3:5672","timestamp":"2025-05-17T13:15:02.346Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.3:5672","timestamp":"2025-05-17T13:15:05.392Z"}
+{"level":"info","message":"Connected to RabbitMQ","timestamp":"2025-05-17T13:15:11.102Z"}
+{"level":"info","message":"Notification service is running and waiting for messages","timestamp":"2025-05-17T13:15:11.103Z"}
+{"level":"info","message":"Received message with routing key: schedule.deleted","timestamp":"2025-05-17T13:15:19.627Z"}
+{"level":"info","message":"Received content: {\"schedule_id\":23,\"start_time\":\"2025-05-30T14:37:00.000Z\",\"end_time\":\"2025-05-30T17:09:00.000Z\",\"normal_seat_price\":\"79000.00\",\"vip_seat_price\":\"123000.00\",\"movie\":{\"id\":4,\"name\":\"The Dark Knight\",\"img\":\"https://upload.wikimedia.org/wikipedia/vi/2/2d/Poster_phim_K%E1%BB%B5_s%C4%A9_b%C3%B3ng_%C4%91%C3%AAm_2008.jpg\",\"genre\":\"Action, Crime\",\"label\":\"Superhero\",\"duration\":152,\"description\":\"Batman phải đối mặt với kẻ thù đáng sợ nhất của mình, Joker, khi Gotham rơi vào hỗn loạn.\",\"status\":\"active\"},\"room\":{\"id\":8,\"name\":\"S-Room 2\",\"seats\":36,\"description\":\"Phòng chiếu thường, giá cả phải chăng\",\"type\":\"Standard\",\"cinema\":{\"id\":3,\"name\":\"Star Cinema\",\"address\":\"99 Lê Lợi, Quận Hải Châu, Đà Nẵng\",\"description\":\"Rạp phim hiện đại với nhiều loại phòng chiếu khác nhau\"}}}","timestamp":"2025-05-17T13:15:19.627Z"}
+{"level":"info","message":"Email sent: <57ceb0f4-36a6-4b6c-9558-0963aa812aa0@gmail.com>","timestamp":"2025-05-17T13:15:23.086Z"}
+{"level":"info","message":"Received message with routing key: schedule.created","timestamp":"2025-05-17T13:16:05.365Z"}
+{"level":"info","message":"Received content: {\"schedule_id\":30,\"start_time\":\"2025-05-24T20:15:00.000Z\",\"end_time\":\"2025-05-24T22:47:00.000Z\",\"normal_seat_price\":\"90000.00\",\"vip_seat_price\":\"100000.00\",\"movie\":{\"id\":4,\"name\":\"The Dark Knight\",\"img\":\"https://upload.wikimedia.org/wikipedia/vi/2/2d/Poster_phim_K%E1%BB%B5_s%C4%A9_b%C3%B3ng_%C4%91%C3%AAm_2008.jpg\",\"genre\":\"Action, Crime\",\"label\":\"Superhero\",\"duration\":152,\"description\":\"Batman phải đối mặt với kẻ thù đáng sợ nhất của mình, Joker, khi Gotham rơi vào hỗn loạn.\",\"status\":\"active\"},\"room\":{\"id\":2,\"name\":\"G-Room 2\",\"seats\":42,\"description\":\"Phòng chiếu vừa, trang bị âm thanh Dolby\",\"type\":\"Dolby Atmos\",\"cinema\":{\"id\":1,\"name\":\"Galaxy Cinema\",\"address\":\"191 Hàm Nghi, Quận 1, TP.HCM\",\"description\":\"Rạp phim cao cấp với công nghệ âm thanh và hình ảnh hiện đại\"}}}","timestamp":"2025-05-17T13:16:05.365Z"}
+{"level":"info","message":"Email sent: <13cb741b-cb96-f4f2-6d05-d1ca36f23522@gmail.com>","timestamp":"2025-05-17T13:16:09.065Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T13:21:48.989Z"}
+{"level":"info","message":"Received content: {\"schedule_id\":26,\"start_time\":\"2025-05-29T13:17:00.000Z\",\"end_time\":\"2025-05-29T16:18:00.000Z\",\"normal_seat_price\":\"86000.00\",\"vip_seat_price\":\"97000.00\",\"movie\":{\"id\":7,\"name\":\"Avengers: Endgame\",\"img\":\"https://upload.wikimedia.org/wikipedia/vi/2/2d/Avengers_Endgame_bia_teaser.jpg\",\"genre\":\"Action, Adventure\",\"label\":\"Superhero\",\"duration\":181,\"description\":\"Sau các sự kiện tàn khốc của Infinity War, các Avengers còn lại tập hợp lại để đảo ngược hành động của Thanos.\",\"status\":\"active\"},\"room\":{\"id\":3,\"name\":\"G-Room 3\",\"seats\":64,\"description\":\"Phòng chiếu lớn, màn hình cực rộng\",\"type\":\"IMAX\",\"cinema\":{\"id\":1,\"name\":\"Galaxy Cinema\",\"address\":\"191 Hàm Nghi, Quận 1, TP.HCM\",\"description\":\"Rạp phim cao cấp với công nghệ âm thanh và hình ảnh hiện đại\"}}}","timestamp":"2025-05-17T13:21:48.990Z"}
+{"level":"error","message":"ok","timestamp":"2025-05-17T13:21:48.992Z"}
+{"level":"info","message":"Email sent: <31552b0d-cede-dba7-dfee-bd8c1fb18f83@gmail.com>","timestamp":"2025-05-17T13:21:52.098Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T13:24:12.425Z"}
+{"level":"info","message":"Received content: {\"schedule_id\":26,\"start_time\":\"2025-05-29T13:17:00.000Z\",\"end_time\":\"2025-05-29T16:18:00.000Z\",\"normal_seat_price\":\"86000.00\",\"vip_seat_price\":\"97000.00\",\"movie\":{\"id\":7,\"name\":\"Avengers: Endgame\",\"img\":\"https://upload.wikimedia.org/wikipedia/vi/2/2d/Avengers_Endgame_bia_teaser.jpg\",\"genre\":\"Action, Adventure\",\"label\":\"Superhero\",\"duration\":181,\"description\":\"Sau các sự kiện tàn khốc của Infinity War, các Avengers còn lại tập hợp lại để đảo ngược hành động của Thanos.\",\"status\":\"active\"},\"room\":{\"id\":3,\"name\":\"G-Room 3\",\"seats\":64,\"description\":\"Phòng chiếu lớn, màn hình cực rộng\",\"type\":\"IMAX\",\"cinema\":{\"id\":1,\"name\":\"Galaxy Cinema\",\"address\":\"191 Hàm Nghi, Quận 1, TP.HCM\",\"description\":\"Rạp phim cao cấp với công nghệ âm thanh và hình ảnh hiện đại\"}}}","timestamp":"2025-05-17T13:24:12.426Z"}
+{"level":"error","message":"ok","timestamp":"2025-05-17T13:24:12.427Z"}
+{"level":"info","message":"Email sent: <6189ddc1-be5f-9861-5113-39e1388c6abc@gmail.com>","timestamp":"2025-05-17T13:24:15.869Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T13:25:47.188Z"}
+{"level":"info","message":"Received content: {\"schedule_id\":26,\"start_time\":\"2025-05-29T13:17:00.000Z\",\"end_time\":\"2025-05-29T16:18:00.000Z\",\"normal_seat_price\":\"86000.00\",\"vip_seat_price\":\"96000.00\",\"movie\":{\"id\":7,\"name\":\"Avengers: Endgame\",\"img\":\"https://upload.wikimedia.org/wikipedia/vi/2/2d/Avengers_Endgame_bia_teaser.jpg\",\"genre\":\"Action, Adventure\",\"label\":\"Superhero\",\"duration\":181,\"description\":\"Sau các sự kiện tàn khốc của Infinity War, các Avengers còn lại tập hợp lại để đảo ngược hành động của Thanos.\",\"status\":\"active\"},\"room\":{\"id\":3,\"name\":\"G-Room 3\",\"seats\":64,\"description\":\"Phòng chiếu lớn, màn hình cực rộng\",\"type\":\"IMAX\",\"cinema\":{\"id\":1,\"name\":\"Galaxy Cinema\",\"address\":\"191 Hàm Nghi, Quận 1, TP.HCM\",\"description\":\"Rạp phim cao cấp với công nghệ âm thanh và hình ảnh hiện đại\"}}}","timestamp":"2025-05-17T13:25:47.189Z"}
+{"level":"error","message":"ok","timestamp":"2025-05-17T13:25:47.189Z"}
+{"level":"info","message":"Email sent: <dde9bbdf-149b-7031-abc6-9b67b482c1de@gmail.com>","timestamp":"2025-05-17T13:25:51.099Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T13:27:27.859Z"}
+{"level":"info","message":"Received content: {\"schedule_id\":26,\"start_time\":\"2025-05-29T13:17:00.000Z\",\"end_time\":\"2025-05-29T16:18:00.000Z\",\"normal_seat_price\":\"86000.00\",\"vip_seat_price\":\"95000.00\",\"movie\":{\"id\":7,\"name\":\"Avengers: Endgame\",\"img\":\"https://upload.wikimedia.org/wikipedia/vi/2/2d/Avengers_Endgame_bia_teaser.jpg\",\"genre\":\"Action, Adventure\",\"label\":\"Superhero\",\"duration\":181,\"description\":\"Sau các sự kiện tàn khốc của Infinity War, các Avengers còn lại tập hợp lại để đảo ngược hành động của Thanos.\",\"status\":\"active\"},\"room\":{\"id\":3,\"name\":\"G-Room 3\",\"seats\":64,\"description\":\"Phòng chiếu lớn, màn hình cực rộng\",\"type\":\"IMAX\",\"cinema\":{\"id\":1,\"name\":\"Galaxy Cinema\",\"address\":\"191 Hàm Nghi, Quận 1, TP.HCM\",\"description\":\"Rạp phim cao cấp với công nghệ âm thanh và hình ảnh hiện đại\"}}}","timestamp":"2025-05-17T13:27:27.860Z"}
+{"level":"error","message":"ok","timestamp":"2025-05-17T13:27:27.861Z"}
+{"level":"info","message":"Email sent: <52e710da-19c7-6b90-46f7-a07c762d5a8b@gmail.com>","timestamp":"2025-05-17T13:27:31.554Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.2:5672","timestamp":"2025-05-17T13:29:23.807Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.2:5672","timestamp":"2025-05-17T13:29:25.389Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.2:5672","timestamp":"2025-05-17T13:29:26.343Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.2:5672","timestamp":"2025-05-17T13:29:27.675Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.2:5672","timestamp":"2025-05-17T13:29:29.780Z"}
+{"level":"info","message":"Connected to RabbitMQ","timestamp":"2025-05-17T13:29:33.493Z"}
+{"level":"info","message":"Notification service is running and waiting for messages","timestamp":"2025-05-17T13:29:33.494Z"}
+{"level":"info","message":"Received message with routing key: schedule.updated","timestamp":"2025-05-17T13:29:54.562Z"}
+{"level":"info","message":"Received content: {\"schedule_id\":26,\"start_time\":\"2025-05-29T13:17:00.000Z\",\"end_time\":\"2025-05-29T16:18:00.000Z\",\"normal_seat_price\":\"86000.00\",\"vip_seat_price\":\"97000.00\",\"movie\":{\"id\":7,\"name\":\"Avengers: Endgame\",\"img\":\"https://upload.wikimedia.org/wikipedia/vi/2/2d/Avengers_Endgame_bia_teaser.jpg\",\"genre\":\"Action, Adventure\",\"label\":\"Superhero\",\"duration\":181,\"description\":\"Sau các sự kiện tàn khốc của Infinity War, các Avengers còn lại tập hợp lại để đảo ngược hành động của Thanos.\",\"status\":\"active\"},\"room\":{\"id\":3,\"name\":\"G-Room 3\",\"seats\":64,\"description\":\"Phòng chiếu lớn, màn hình cực rộng\",\"type\":\"IMAX\",\"cinema\":{\"id\":1,\"name\":\"Galaxy Cinema\",\"address\":\"191 Hàm Nghi, Quận 1, TP.HCM\",\"description\":\"Rạp phim cao cấp với công nghệ âm thanh và hình ảnh hiện đại\"}}}","timestamp":"2025-05-17T13:29:54.562Z"}
+{"level":"info","message":"Email sent: <b8b7dc81-38aa-0a2c-1c15-40eb5bffa42f@gmail.com>","timestamp":"2025-05-17T13:29:58.577Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.6:5672","timestamp":"2025-05-17T16:36:08.277Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.6:5672","timestamp":"2025-05-18T13:03:53.335Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.6:5672","timestamp":"2025-05-18T13:03:55.659Z"}

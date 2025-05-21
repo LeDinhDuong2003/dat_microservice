@@ -1,0 +1,51 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: location-db-init
+spec:
+  template:
+    spec:
+      containers:
+      - name: location-db-init
+        image: postgres:15
+        command: ["/bin/bash", "-c"]
+        args:
+        - |
+          PGPASSWORD=$POSTGRES_PASSWORD psql -h location-db -U location_user -d location_db -c "
+          CREATE TABLE IF NOT EXISTS cinemas (
+            id SERIAL PRIMARY KEY,
+            name TEXT NOT NULL,
+            address TEXT NOT NULL,
+            description TEXT
+          );
+          
+          CREATE TABLE IF NOT EXISTS rooms (
+            id SERIAL PRIMARY KEY,
+            cinema_id INTEGER REFERENCES cinemas(id),
+            name TEXT NOT NULL,
+            seats INTEGER NOT NULL,
+            description TEXT,
+            type TEXT NOT NULL
+          );
+          
+          INSERT INTO cinemas (name, address, description) 
+          VALUES 
+            ('CGV Vincom Center', 'Số 72 Lê Thánh Tôn, Quận 1, TP.HCM', 'Rạp chiếu phim cao cấp tại trung tâm thành phố'),
+            ('Galaxy Cinema', '191 Hàm Nghi, Quận 1, TP.HCM', 'Rạp phim cao cấp với công nghệ âm thanh và hình ảnh hiện đại')
+          ON CONFLICT (id) DO NOTHING;
+          
+          INSERT INTO rooms (cinema_id, name, seats, description, type)
+          VALUES 
+            (1, 'Phòng Chiếu A1', 120, 'Phòng chiếu tầng 2, khu vực A', 'IMAX'),
+            (1, 'G-Room 2', 42, 'Phòng chiếu vừa, trang bị âm thanh Dolby', 'Dolby Atmos'),
+            (2, 'Room 3D', 80, 'Phòng chiếu 3D cao cấp', 'Standard')
+          ON CONFLICT (id) DO NOTHING;
+          "
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: location-db-password
+      restartPolicy: Never
+  backoffLimit: 4

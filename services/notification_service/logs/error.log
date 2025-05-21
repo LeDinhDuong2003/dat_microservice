@@ -1,0 +1,95 @@
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T07:31:46.346Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T07:31:47.081Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T07:31:48.189Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T07:31:51.852Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T07:34:26.447Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T07:34:28.305Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T07:34:29.290Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T07:34:30.585Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T07:34:32.723Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:17.721Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:18.749Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:19.504Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:20.420Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:21.842Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:24.094Z"}
+{"level":"error","message":"RabbitMQ connection error: Channel ended, no reply will be forthcoming","timestamp":"2025-05-17T08:16:27.762Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:34.670Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:16:47.991Z"}
+{"level":"error","message":"RabbitMQ connection error: getaddrinfo ENOTFOUND rabbitmq","timestamp":"2025-05-17T08:17:13.990Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:17:41.450Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:17:43.204Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:17:57.360Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T08:18:32.406Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T08:18:33.591Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T08:18:35.328Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T08:18:36.549Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:18:39.762Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:18:43.381Z"}
+{"level":"error","message":"RabbitMQ connection error: getaddrinfo ENOTFOUND rabbitmq","timestamp":"2025-05-17T08:18:50.190Z"}
+{"level":"error","message":"RabbitMQ connection error: getaddrinfo ENOTFOUND rabbitmq","timestamp":"2025-05-17T08:19:03.426Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T08:19:42.107Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T08:19:42.809Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T08:19:44.486Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T08:19:47.194Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.4:5672","timestamp":"2025-05-17T08:39:06.859Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.4:5672","timestamp":"2025-05-17T08:39:07.696Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T08:39:37.573Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T08:39:38.628Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.5:5672","timestamp":"2025-05-17T08:39:39.541Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.4:5672","timestamp":"2025-05-17T08:39:43.498Z"}
+{"level":"error","message":"RabbitMQ connection error: getaddrinfo ENOTFOUND rabbitmq","timestamp":"2025-05-17T08:39:53.890Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:40:07.462Z"}
+{"level":"error","message":"RabbitMQ connection error: getaddrinfo ENOTFOUND rabbitmq","timestamp":"2025-05-17T08:40:33.482Z"}
+{"level":"error","message":"RabbitMQ connection error: getaddrinfo ENOTFOUND rabbitmq","timestamp":"2025-05-17T08:41:25.087Z"}
+{"level":"error","message":"RabbitMQ connection error: getaddrinfo ENOTFOUND rabbitmq","timestamp":"2025-05-17T08:42:25.448Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:45:26.521Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:45:27.176Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:45:28.003Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T08:48:11.745Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T08:48:12.387Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T08:48:13.203Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T08:48:14.361Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T08:48:16.422Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:48:30.945Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:48:31.801Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.3:5672","timestamp":"2025-05-17T08:48:36.400Z"}
+{"level":"error","message":"ok","timestamp":"2025-05-17T08:51:52.620Z"}
+{"level":"error","message":"Error processing message: Cannot read properties of undefined (reading 'id')","timestamp":"2025-05-17T09:03:45.031Z"}
+{"level":"error","message":"ok","timestamp":"2025-05-17T09:05:16.219Z"}
+{"level":"error","message":"Error processing message: Cannot read properties of undefined (reading 'id')","timestamp":"2025-05-17T09:06:32.247Z"}
+{"level":"error","message":"Error processing message: Cannot read properties of undefined (reading 'id')","timestamp":"2025-05-17T09:16:29.309Z"}
+{"level":"error","message":"Error processing message: Cannot read properties of undefined (reading 'id')","timestamp":"2025-05-17T09:17:36.924Z"}
+{"level":"error","message":"Error processing message: Cannot read properties of undefined (reading 'id')","timestamp":"2025-05-17T09:19:40.550Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T13:05:52.847Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.6:5672","timestamp":"2025-05-17T13:05:54.348Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.4:5672","timestamp":"2025-05-17T13:06:02.515Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.4:5672","timestamp":"2025-05-17T13:06:03.270Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.4:5672","timestamp":"2025-05-17T13:06:04.120Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.27.0.4:5672","timestamp":"2025-05-17T13:06:05.328Z"}
+{"level":"error","message":"ok2222","timestamp":"2025-05-17T13:11:19.675Z"}
+{"level":"error","message":"Error processing message: Cannot read properties of undefined (reading 'id')","timestamp":"2025-05-17T13:11:19.676Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.4:5672","timestamp":"2025-05-17T13:12:32.894Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.4:5672","timestamp":"2025-05-17T13:12:33.860Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.4:5672","timestamp":"2025-05-17T13:12:34.595Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.4:5672","timestamp":"2025-05-17T13:12:35.594Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.4:5672","timestamp":"2025-05-17T13:12:36.894Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.4:5672","timestamp":"2025-05-17T13:12:38.994Z"}
+{"level":"error","message":"Content object does not have an id property","timestamp":"2025-05-17T13:12:55.867Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.3:5672","timestamp":"2025-05-17T13:15:01.452Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.3:5672","timestamp":"2025-05-17T13:15:02.346Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.3:5672","timestamp":"2025-05-17T13:15:03.019Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.3:5672","timestamp":"2025-05-17T13:15:05.392Z"}
+{"level":"error","message":"ok","timestamp":"2025-05-17T13:21:48.992Z"}
+{"level":"error","message":"ok","timestamp":"2025-05-17T13:24:12.427Z"}
+{"level":"error","message":"ok","timestamp":"2025-05-17T13:25:47.189Z"}
+{"level":"error","message":"ok","timestamp":"2025-05-17T13:27:27.861Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.2:5672","timestamp":"2025-05-17T13:29:23.807Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.2:5672","timestamp":"2025-05-17T13:29:25.389Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.2:5672","timestamp":"2025-05-17T13:29:26.343Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.2:5672","timestamp":"2025-05-17T13:29:27.675Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.2:5672","timestamp":"2025-05-17T13:29:29.780Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.6:5672","timestamp":"2025-05-17T16:36:08.277Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.6:5672","timestamp":"2025-05-17T16:36:09.454Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.6:5672","timestamp":"2025-05-18T13:03:53.335Z"}
+{"level":"error","message":"RabbitMQ connection error: connect ECONNREFUSED 172.18.0.6:5672","timestamp":"2025-05-18T13:03:55.659Z"}

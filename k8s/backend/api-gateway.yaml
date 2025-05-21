@@ -1,0 +1,49 @@
+# k8s/backend/api-gateway.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+spec:
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+      - name: api-gateway
+        image: cinema/api-gateway:latest  # Thay bằng image của bạn
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3003
+        env:
+        - name: PORT
+          value: "3003"
+        - name: MOVIE_SERVICE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: service-config
+              key: MOVIE_SERVICE_URL
+        - name: LOCATION_SERVICE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: service-config
+              key: LOCATION_SERVICE_URL
+        - name: SCHEDULE_SERVICE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: service-config
+              key: SCHEDULE_SERVICE_URL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway
+spec:
+  ports:
+  - port: 3003
+    targetPort: 3003
+  selector:
+    app: api-gateway

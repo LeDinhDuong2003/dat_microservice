@@ -1,0 +1,592 @@
+openapi: 3.0.0
+info:
+  title: Schedule Service API
+  description: API dịch vụ quản lý lịch chiếu phim
+  version: 1.0.0
+
+security:
+  - bearerAuth: []
+servers:
+  - url: http://localhost:3002
+    description: Local Development Server (Host Machine)
+  - url: http://schedule-service:3002
+    description: Docker Internal Network
+  - url: http://localhost:3003
+    description: Via API Gateway
+
+tags:
+  - name: schedules
+    description: Quản lý lịch chiếu phim
+
+paths:
+  /api/schedules:
+    post:
+      summary: Tạo lịch chiếu mới
+      security:
+        - bearerAuth: []
+      tags:
+        - schedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleInput'
+            example:
+              movie_id: 1
+              room_id: 1
+              start_time: "2025-05-20T13:30:00Z"
+              end_time: "2025-05-20T15:45:00Z"
+              normal_seat_price: 80000
+              vip_seat_price: 120000
+      responses:
+        '401':
+          description: Không có quyền truy cập (thiếu token hoặc token không hợp lệ)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '403':
+          description: Không đủ quyền để thực hiện hành động này
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '201':
+          description: Lịch chiếu được tạo thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+        '400':
+          description: Dữ liệu đầu vào không hợp lệ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    
+    get:
+      summary: Lấy danh sách tất cả lịch chiếu
+      security:
+        - bearerAuth: []
+      tags:
+        - schedules
+      responses:
+        '200':
+          description: Danh sách lịch chiếu
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Schedule'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/schedules/with-movies:
+    get:
+      summary: Lấy danh sách lịch chiếu kèm thông tin chi tiết về phim và phòng chiếu
+      security:
+        - bearerAuth: []
+      tags:
+        - schedules
+      responses:
+        '200':
+          description: Danh sách lịch chiếu với thông tin chi tiết
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ScheduleWithDetails'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/schedules/filtered:
+    get:
+      summary: Lấy danh sách lịch chiếu có lọc và phân trang
+      security:
+        - bearerAuth: []
+      tags:
+        - schedules
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Số trang hiện tại
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 5
+          description: Số lượng lịch chiếu trên một trang
+        - name: movie_name
+          in: query
+          schema:
+            type: string
+          required: false
+          description: Lọc theo tên phim
+        - name: cinema_id
+          in: query
+          schema:
+            type: integer
+          required: false
+          description: Lọc theo ID rạp chiếu phim
+      responses:
+        '200':
+          description: Danh sách lịch chiếu đã lọc và phân trang
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSchedules'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/schedules/room/{roomId}:
+    get:
+      summary: Lấy danh sách lịch chiếu theo ID phòng
+      security:
+        - bearerAuth: []
+      tags:
+        - schedules
+      parameters:
+        - name: roomId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID của phòng chiếu
+      responses:
+        '200':
+          description: Danh sách lịch chiếu theo phòng
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ScheduleWithMovie'
+        '400':
+          description: ID phòng không hợp lệ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/schedules/{id}:
+    get:
+      summary: Lấy thông tin chi tiết của một lịch chiếu
+      security:
+        - bearerAuth: []
+      tags:
+        - schedules
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID của lịch chiếu
+      responses:
+        '200':
+          description: Thông tin chi tiết của lịch chiếu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleWithDetails'
+        '400':
+          description: ID lịch chiếu không hợp lệ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Lịch chiếu không tồn tại
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      summary: Cập nhật thông tin lịch chiếu
+      security:
+        - bearerAuth: []
+      tags:
+        - schedules
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID của lịch chiếu
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleInput'
+            example:
+              movie_id: 1
+              room_id: 1
+              start_time: "2025-05-20T14:00:00Z"
+              end_time: "2025-05-20T16:15:00Z"
+              normal_seat_price: 90000
+              vip_seat_price: 130000
+      responses:
+        '200':
+          description: Lịch chiếu được cập nhật thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+        '400':
+          description: Dữ liệu đầu vào không hợp lệ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '404':
+          description: Lịch chiếu không tồn tại
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      summary: Xóa lịch chiếu
+      security:
+        - bearerAuth: []
+      tags:
+        - schedules
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID của lịch chiếu
+      responses:
+        '200':
+          description: Lịch chiếu đã được xóa thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Lịch chiếu đã được xóa thành công"
+        '404':
+          description: Lịch chiếu không tồn tại
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT Authentication token. Nhập token mà không có 'Bearer' phía trước.
+  schemas:
+    Schedule:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        movie_id:
+          type: integer
+          format: int64
+          example: 1
+        room_id:
+          type: integer
+          format: int64
+          example: 1
+        start_time:
+          type: string
+          format: date-time
+          example: "2025-05-20T13:30:00Z"
+        end_time:
+          type: string
+          format: date-time
+          example: "2025-05-20T15:45:00Z"
+        normal_seat_price:
+          type: integer
+          example: 80000
+          description: Giá ghế thường (VND)
+        vip_seat_price:
+          type: integer
+          example: 120000
+          description: Giá ghế VIP (VND)
+
+    ScheduleInput:
+      type: object
+      required:
+        - movie_id
+        - room_id
+        - start_time
+        - end_time
+        - normal_seat_price
+        - vip_seat_price
+      properties:
+        movie_id:
+          type: integer
+          format: int64
+          example: 1
+        room_id:
+          type: integer
+          format: int64
+          example: 1
+        start_time:
+          type: string
+          format: date-time
+          example: "2025-05-20T13:30:00Z"
+        end_time:
+          type: string
+          format: date-time
+          example: "2025-05-20T15:45:00Z"
+        normal_seat_price:
+          type: integer
+          example: 80000
+          description: Giá ghế thường (VND)
+        vip_seat_price:
+          type: integer
+          example: 120000
+          description: Giá ghế VIP (VND)
+
+    ScheduleWithDetails:
+      type: object
+      properties:
+        schedule_id:
+          type: integer
+          format: int64
+          example: 1
+        start_time:
+          type: string
+          format: date-time
+          example: "2025-05-20T13:30:00Z"
+        end_time:
+          type: string
+          format: date-time
+          example: "2025-05-20T15:45:00Z"
+        normal_seat_price:
+          type: integer
+          example: 80000
+          description: Giá ghế thường (VND)
+        vip_seat_price:
+          type: integer
+          example: 120000
+          description: Giá ghế VIP (VND)
+        movie:
+          $ref: '#/components/schemas/Movie'
+        room:
+          $ref: '#/components/schemas/Room'
+
+    ScheduleWithMovie:
+      type: object
+      properties:
+        schedule_id:
+          type: integer
+          format: int64
+          example: 1
+        start_time:
+          type: string
+          format: date-time
+          example: "2025-05-20T13:30:00Z"
+        end_time:
+          type: string
+          format: date-time
+          example: "2025-05-20T15:45:00Z"
+        normal_seat_price:
+          type: integer
+          example: 80000
+          description: Giá ghế thường (VND)
+        vip_seat_price:
+          type: integer
+          example: 120000
+          description: Giá ghế VIP (VND)
+        movie:
+          $ref: '#/components/schemas/Movie'
+
+    PaginatedSchedules:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScheduleWithDetails'
+        pagination:
+          type: object
+          properties:
+            total:
+              type: integer
+              example: 25
+              description: Tổng số lịch chiếu
+            page:
+              type: integer
+              example: 1
+              description: Trang hiện tại
+            limit:
+              type: integer
+              example: 5
+              description: Số lượng lịch chiếu trên một trang
+            totalPages:
+              type: integer
+              example: 5
+              description: Tổng số trang
+
+    Movie:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: "Avengers: Endgame"
+        genre:
+          type: string
+          example: "Action, Adventure, Sci-Fi"
+        label:
+          type: string
+          example: "P13"
+        duration:
+          type: integer
+          example: 181
+          description: Thời lượng phim (phút)
+        description:
+          type: string
+          example: "After the devastating events of Avengers: Infinity War, the universe is in ruins."
+        status:
+          type: string
+          example: "active"
+        img:
+          type: string
+          format: uri
+          example: "https://example.com/images/avengers-endgame.jpg"
+
+    Room:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: "Phòng 1"
+        seats:
+          type: integer
+          example: 120
+        description:
+          type: string
+          example: "Phòng chiếu tiêu chuẩn"
+        type:
+          type: string
+          example: "2D"
+        cinema:
+          $ref: '#/components/schemas/Cinema'
+
+    Cinema:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: "CGV Vincom Center"
+        address:
+          type: string
+          example: "191 Bà Triệu, Hai Bà Trưng, Hà Nội"
+        description:
+          type: string
+          example: "Rạp chiếu phim cao cấp tại trung tâm thành phố"
+
+    ValidationError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+                example: ""
+              msg:
+                type: string
+                example: "Giá ghế không thể âm"
+              param:
+                type: string
+                example: "normal_seat_price"
+              location:
+                type: string
+                example: "body"
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Lỗi khi xử lý yêu cầu"
+          
+    AuthError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Không có quyền truy cập"
+        message:
+          type: string
+          example: "Token JWT không hợp lệ hoặc đã hết hạn"

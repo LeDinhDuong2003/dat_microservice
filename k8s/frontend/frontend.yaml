@@ -1,0 +1,36 @@
+# k8s/frontend/frontend.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: cinema/frontend:latest  # Thay bằng image của bạn
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3005
+        env:
+        - name: REACT_APP_API_URL
+          value: "http://localhost:3003"  # URL của API Gateway
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  type: NodePort  # Để có thể truy cập từ bên ngoài Minikube
+  ports:
+  - port: 3005
+    targetPort: 3005
+    nodePort: 30005  # Port để truy cập từ bên ngoài (phải trong khoảng 30000-32767)
+  selector:
+    app: frontend

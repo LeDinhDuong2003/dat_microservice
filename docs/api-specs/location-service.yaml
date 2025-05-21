@@ -1,0 +1,514 @@
+openapi: 3.0.0
+info:
+  title: Location Service API
+  description: API dịch vụ quản lý rạp chiếu phim, phòng chiếu và ghế
+  version: 1.0.0
+
+security:
+  - bearerAuth: []  # Áp dụng xác thực JWT Bearer cho toàn bộ API
+
+servers:
+  - url: http://localhost:3001
+    description: Local Development Server (Host Machine)
+  - url: http://location_service:3001
+    description: Docker Internal Network
+  - url: http://localhost:3003
+    description: Via API Gateway
+
+tags:
+  - name: cinemas
+    description: Quản lý rạp chiếu phim
+  - name: rooms
+    description: Quản lý phòng chiếu trong rạp
+  - name: seats
+    description: Quản lý ghế trong phòng chiếu
+
+paths:
+  /api/cinemas:
+    post:
+      summary: Tạo rạp chiếu phim mới
+      security:
+        - bearerAuth: []
+      tags:
+        - cinemas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CinemaInput'
+            example:
+              name: "CGV Vincom Center"
+              address: "191 Bà Triệu, Hai Bà Trưng, Hà Nội"
+              description: "Rạp chiếu phim cao cấp tại trung tâm thành phố"
+      responses:
+        '201':
+          description: Rạp phim được tạo thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cinema'
+        '401':
+          description: Không có quyền truy cập (thiếu token hoặc token không hợp lệ)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '403':
+          description: Không đủ quyền để thực hiện hành động này
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    
+    get:
+      summary: Lấy danh sách tất cả rạp chiếu phim
+      security:
+        - bearerAuth: []
+      tags:
+        - cinemas
+      responses:
+        '200':
+          description: Danh sách rạp chiếu phim
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cinema'
+        '401':
+          description: Không có quyền truy cập (thiếu token hoặc token không hợp lệ)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '403':
+          description: Không đủ quyền để thực hiện hành động này
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/rooms:
+    post:
+      summary: Tạo phòng chiếu mới
+      security:
+        - bearerAuth: []
+      tags:
+        - rooms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoomInput'
+            example:
+              cinema_id: 1
+              name: "Phòng 1"
+              seats: 120
+              description: "Phòng chiếu tiêu chuẩn"
+              type: "2D"
+      responses:
+        '201':
+          description: Phòng chiếu được tạo thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        '401':
+          description: Không có quyền truy cập (thiếu token hoặc token không hợp lệ)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '403':
+          description: Không đủ quyền để thực hiện hành động này
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '404':
+          description: Rạp chiếu phim không tồn tại
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/cinemas/{cinemaId}/rooms:
+    get:
+      summary: Lấy danh sách phòng chiếu theo rạp
+      security:
+        - bearerAuth: []
+      tags:
+        - rooms
+      parameters:
+        - name: cinemaId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID của rạp chiếu phim
+      responses:
+        '200':
+          description: Danh sách phòng chiếu
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Room'
+        '401':
+          description: Không có quyền truy cập (thiếu token hoặc token không hợp lệ)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '403':
+          description: Không đủ quyền để thực hiện hành động này
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '404':
+          description: Rạp chiếu phim không tồn tại
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/rooms/{id}:
+    get:
+      summary: Lấy thông tin chi tiết của một phòng chiếu
+      security:
+        - bearerAuth: []
+      tags:
+        - rooms
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID của phòng chiếu
+      responses:
+        '200':
+          description: Thông tin chi tiết của phòng chiếu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomDetail'
+        '401':
+          description: Không có quyền truy cập (thiếu token hoặc token không hợp lệ)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '403':
+          description: Không đủ quyền để thực hiện hành động này
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '404':
+          description: Phòng chiếu không tồn tại
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/seats:
+    post:
+      summary: Tạo ghế mới trong phòng chiếu
+      security:
+        - bearerAuth: []
+      tags:
+        - seats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SeatInput'
+            example:
+              room_id: 1
+              name: "A1"
+              type: "standard"
+      responses:
+        '201':
+          description: Ghế được tạo thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Seat'
+        '400':
+          description: Ghế đã tồn tại trong phòng
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Không có quyền truy cập (thiếu token hoặc token không hợp lệ)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '403':
+          description: Không đủ quyền để thực hiện hành động này
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '404':
+          description: Phòng chiếu không tồn tại
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/rooms/{roomId}/seats:
+    get:
+      summary: Lấy danh sách ghế theo phòng chiếu
+      security:
+        - bearerAuth: []
+      tags:
+        - seats
+      parameters:
+        - name: roomId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID của phòng chiếu
+      responses:
+        '200':
+          description: Danh sách ghế trong phòng
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Seat'
+        '401':
+          description: Không có quyền truy cập (thiếu token hoặc token không hợp lệ)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '403':
+          description: Không đủ quyền để thực hiện hành động này
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '404':
+          description: Phòng chiếu không tồn tại
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT Authentication token. Nhập token mà không có 'Bearer' phía trước.
+  schemas:
+    Cinema:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: "CGV Vincom Center"
+        address:
+          type: string
+          example: "191 Bà Triệu, Hai Bà Trưng, Hà Nội"
+        description:
+          type: string
+          example: "Rạp chiếu phim cao cấp tại trung tâm thành phố"
+
+    CinemaInput:
+      type: object
+      required:
+        - name
+        - address
+      properties:
+        name:
+          type: string
+          example: "CGV Vincom Center"
+        address:
+          type: string
+          example: "191 Bà Triệu, Hai Bà Trưng, Hà Nội"
+        description:
+          type: string
+          example: "Rạp chiếu phim cao cấp tại trung tâm thành phố"
+
+    Room:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        cinema_id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: "Phòng 1"
+        seats:
+          type: integer
+          example: 120
+        description:
+          type: string
+          example: "Phòng chiếu tiêu chuẩn"
+        type:
+          type: string
+          example: "2D"
+
+    RoomInput:
+      type: object
+      required:
+        - cinema_id
+        - name
+        - seats
+      properties:
+        cinema_id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: "Phòng 1"
+        seats:
+          type: integer
+          example: 120
+        description:
+          type: string
+          example: "Phòng chiếu tiêu chuẩn"
+        type:
+          type: string
+          example: "2D"
+
+    RoomDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: "Phòng 1"
+        seats:
+          type: integer
+          example: 120
+        description:
+          type: string
+          example: "Phòng chiếu tiêu chuẩn"
+        type:
+          type: string
+          example: "2D"
+        cinema:
+          $ref: '#/components/schemas/Cinema'
+
+    Seat:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        room_id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: "A1"
+        type:
+          type: string
+          example: "standard"
+
+    SeatInput:
+      type: object
+      required:
+        - room_id
+        - name
+        - type
+      properties:
+        room_id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: "A1"
+        type:
+          type: string
+          example: "standard"
+
+    AuthError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Không có quyền truy cập"
+        message:
+          type: string
+          example: "Token JWT không hợp lệ hoặc đã hết hạn"
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Lỗi khi xử lý yêu cầu"

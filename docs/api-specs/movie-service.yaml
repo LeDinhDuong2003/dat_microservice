@@ -1,0 +1,316 @@
+openapi: 3.0.0
+info:
+  title: Movie Service API
+  description: API dịch vụ quản lý phim và tìm kiếm phim
+  version: 1.0.0
+
+security:
+  - bearerAuth: []  # Áp dụng xác thực JWT Bearer cho toàn bộ API
+
+servers:
+  - url: http://localhost:3000
+    description: Local Development Server (Host Machine)
+  - url: http://movie_service:3000
+    description: Docker Internal Network
+  - url: http://localhost:3003
+    description: Via API Gateway
+
+tags:
+  - name: movies
+    description: Quản lý thông tin phim
+
+paths:
+  /api/movies:
+    post:
+      summary: Tạo phim mới
+      security:
+        - bearerAuth: []
+      tags:
+        - movies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MovieInput'
+            example:
+              name: "Avengers: Endgame"
+              genre: "Action, Adventure, Sci-Fi"
+              label: "P13"
+              duration: 181
+              description: "After the devastating events of Avengers: Infinity War, the universe is in ruins."
+              status: "active"
+              img: "https://example.com/images/avengers-endgame.jpg"
+      responses:
+        '201':
+          description: Phim được tạo thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+        '400':
+          description: Dữ liệu đầu vào không hợp lệ
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Không có quyền truy cập (thiếu token hoặc token không hợp lệ)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '403':
+          description: Không đủ quyền để thực hiện hành động này
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    
+    get:
+      summary: Lấy danh sách phim hoặc tìm kiếm phim theo tên
+      security:
+        - bearerAuth: []
+      tags:
+        - movies
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+          required: false
+          description: Tìm kiếm phim theo tên (tìm kiếm không phân biệt hoa thường, tìm kiếm một phần)
+      responses:
+        '200':
+          description: Danh sách phim
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Movie'
+        '401':
+          description: Không có quyền truy cập (thiếu token hoặc token không hợp lệ)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '403':
+          description: Không đủ quyền để thực hiện hành động này
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/movies/search:
+    get:
+      summary: Tìm kiếm phim theo tên
+      security:
+        - bearerAuth: []
+      tags:
+        - movies
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+          required: false
+          description: Tìm kiếm phim theo tên (tìm kiếm không phân biệt hoa thường, tìm kiếm một phần)
+      responses:
+        '200':
+          description: Danh sách phim tìm được
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Movie'
+        '401':
+          description: Không có quyền truy cập (thiếu token hoặc token không hợp lệ)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '403':
+          description: Không đủ quyền để thực hiện hành động này
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/movies/{id}:
+    get:
+      summary: Lấy thông tin chi tiết của một phim
+      security:
+        - bearerAuth: []
+      tags:
+        - movies
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID của phim
+      responses:
+        '200':
+          description: Thông tin chi tiết của phim
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+        '401':
+          description: Không có quyền truy cập (thiếu token hoặc token không hợp lệ)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '403':
+          description: Không đủ quyền để thực hiện hành động này
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+        '404':
+          description: Phim không tồn tại
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Lỗi server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT Authentication token. Nhập token mà không có 'Bearer' phía trước.
+  schemas:
+    Movie:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: "Avengers: Endgame"
+        genre:
+          type: string
+          example: "Action, Adventure, Sci-Fi"
+        label:
+          type: string
+          example: "P13"
+        duration:
+          type: integer
+          example: 181
+          description: Thời lượng phim (phút)
+        description:
+          type: string
+          example: "After the devastating events of Avengers: Infinity War, the universe is in ruins."
+        status:
+          type: string
+          example: "active"
+          enum: ["active", "inactive", "coming_soon"]
+        img:
+          type: string
+          format: uri
+          example: "https://example.com/images/avengers-endgame.jpg"
+          description: URL ảnh poster của phim
+
+    MovieInput:
+      type: object
+      required:
+        - name
+        - genre
+        - label
+        - duration
+      properties:
+        name:
+          type: string
+          example: "Avengers: Endgame"
+        genre:
+          type: string
+          example: "Action, Adventure, Sci-Fi"
+        label:
+          type: string
+          example: "P13"
+        duration:
+          type: integer
+          example: 181
+          description: Thời lượng phim (phút)
+        description:
+          type: string
+          example: "After the devastating events of Avengers: Infinity War, the universe is in ruins."
+        status:
+          type: string
+          example: "active"
+          enum: ["active", "inactive", "coming_soon"]
+        img:
+          type: string
+          format: uri
+          example: "https://example.com/images/avengers-endgame.jpg"
+          description: URL ảnh poster của phim
+
+    ValidationError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+                example: ""
+              msg:
+                type: string
+                example: "Tên phim không được để trống"
+              param:
+                type: string
+                example: "name"
+              location:
+                type: string
+                example: "body"
+
+    AuthError:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Không có quyền truy cập"
+        message:
+          type: string
+          example: "Token JWT không hợp lệ hoặc đã hết hạn"
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Lỗi khi xử lý yêu cầu"

@@ -1,0 +1,49 @@
+# k8s/databases/location-db.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: location-db
+spec:
+  selector:
+    matchLabels:
+      app: location-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: location-db
+    spec:
+      containers:
+      - image: postgres:15
+        name: location-db
+        env:
+        - name: POSTGRES_DB
+          value: location_db
+        - name: POSTGRES_USER
+          value: location_user
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: location-db-password
+        ports:
+        - containerPort: 5432
+          name: postgres
+        volumeMounts:
+        - name: location-db-persistent-storage
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: location-db-persistent-storage
+        persistentVolumeClaim:
+          claimName: location-db-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: location-db
+spec:
+  ports:
+  - port: 5432
+  selector:
+    app: location-db

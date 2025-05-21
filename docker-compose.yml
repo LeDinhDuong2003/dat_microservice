@@ -1,0 +1,153 @@
+version: '3.8'
+services:
+  movie_db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: movie_db
+      POSTGRES_USER: movie_user
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  movie_service:
+    build: ./services/movie_service
+    ports:
+      - "3000:3000"
+    depends_on:
+      - movie_db
+    environment:
+      DB_HOST: movie_db
+      DB_USER: movie_user
+      DB_PASSWORD: secret
+      DB_NAME: movie_db
+      DB_PORT: 5432
+    volumes:
+      - ./services/movie_service:/app
+    command: npm run dev
+
+  location_db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: location_db
+      POSTGRES_USER: location_user
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5433:5432"
+    volumes:
+      - locationdata:/var/lib/postgresql/data
+
+  location_service:
+    build: ./services/location_service
+    ports:
+      - "3001:3001"
+    depends_on:
+      - location_db
+    environment:
+      DB_HOST: location_db
+      DB_USER: location_user
+      DB_PASSWORD: secret
+      DB_NAME: location_db
+      DB_PORT: 5432
+    volumes:
+      - ./services/location_service:/app
+    command: npm run dev
+
+  schedule_db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: schedule_db
+      POSTGRES_USER: schedule_user
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5434:5432"
+    volumes:
+      - scheduledata:/var/lib/postgresql/data
+
+  schedule_service:
+    build: ./services/schedule_service
+    ports:
+      - "3002:3002"
+    depends_on:
+      - schedule_db
+    environment:
+      DB_HOST: schedule_db
+      DB_USER: schedule_user
+      DB_PASSWORD: secret
+      DB_NAME: schedule_db
+      DB_PORT: 5432
+    volumes:
+      - ./services/schedule_service:/app
+    command: npm run dev
+
+  api_gateway:
+    build: ./gateway
+    ports:
+      - "3003:3003"
+    depends_on:
+      - movie_service
+      - location_service
+      - schedule_service
+    environment:
+      - PORT=3003
+      - MOVIE_SERVICE_URL=http://movie_service:3000
+      - LOCATION_SERVICE_URL=http://location_service:3001
+      - SCHEDULE_SERVICE_URL=http://schedule_service:3002
+    volumes:
+      - ./gateway:/app
+      - ./gateway/logs:/app/logs
+    command: npm start
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3005:3005"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_API_URL=http://localhost:3003
+    stdin_open: true
+    depends_on:
+      - api_gateway
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=cinema_app
+      - RABBITMQ_DEFAULT_PASS=cinema_password
+
+  notification_service:
+    build: ./services/notification_service
+    container_name: notification_service
+    restart: always
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_URL=amqp://cinema_app:cinema_password@rabbitmq:5672
+      - EMAIL_SERVICE=gmail
+      - EMAIL_USER=tieuhoangdat2k3@gmail.com
+      - EMAIL_PASSWORD=fjbt hryy ywpt rxxb
+      - EMAIL_TO=tieuhoangdat@gmail.com
+      - LOG_LEVEL=info
+    volumes:
+      - ./services/notification_service:/app
+      - ./services/notification_service/logs:/app/logs
+
+volumes:
+  pgdata:
+  locationdata:
+  scheduledata:
+  rabbitmq_data:

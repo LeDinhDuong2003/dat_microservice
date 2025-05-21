@@ -1,0 +1,146 @@
+# location-db-reset.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: location-db-reset-sql
+data:
+  reset.sql: |
+    -- Xóa các bảng hiện có (theo thứ tự để tránh lỗi ràng buộc khóa ngoại)
+    DROP TABLE IF EXISTS seats CASCADE;
+    DROP TABLE IF EXISTS rooms CASCADE;
+    DROP TABLE IF EXISTS cinemas CASCADE;
+
+    -- Tạo lại các bảng
+    CREATE TABLE IF NOT EXISTS cinemas (
+        id SERIAL PRIMARY KEY,
+        name TEXT NOT NULL,
+        address TEXT NOT NULL,
+        description TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS rooms (
+        id SERIAL PRIMARY KEY,
+        cinema_id INTEGER REFERENCES cinemas(id),
+        name TEXT NOT NULL,
+        seats INTEGER NOT NULL,
+        description TEXT,
+        type TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS seats (
+        id SERIAL PRIMARY KEY,
+        room_id INTEGER REFERENCES rooms(id),
+        name TEXT NOT NULL,
+        type TEXT NOT NULL
+    );
+
+    -- 1. Thêm 3 rạp phim
+    INSERT INTO cinemas (name, address, description)
+    VALUES
+        ('Galaxy Cinema', '191 Hàm Nghi, Quận 1, TP.HCM', 'Rạp phim cao cấp với công nghệ âm thanh và hình ảnh hiện đại'),
+        ('Platinum Cinema', '54 Nguyễn Đình Chiểu, Quận Hai Bà Trưng, Hà Nội', 'Rạp phim sang trọng với trải nghiệm xem phim đẳng cấp'),
+        ('Star Cinema', '99 Lê Lợi, Quận Hải Châu, Đà Nẵng', 'Rạp phim hiện đại với nhiều loại phòng chiếu khác nhau');
+
+    -- 2. Thêm 3 phòng cho mỗi rạp phim
+    INSERT INTO rooms (cinema_id, name, seats, description, type)
+    VALUES
+        -- Phòng cho Galaxy Cinema (cinema_id = 1)
+        (1, 'G-Room 1', 25, 'Phòng chiếu nhỏ, thích hợp cho phim nghệ thuật', 'Standard'),
+        (1, 'G-Room 2', 42, 'Phòng chiếu vừa, trang bị âm thanh Dolby', 'Dolby Atmos'),
+        (1, 'G-Room 3', 64, 'Phòng chiếu lớn, màn hình cực rộng', 'IMAX'),
+
+        -- Phòng cho Platinum Cinema (cinema_id = 2)
+        (2, 'P-Room 1', 36, 'Phòng chiếu tầm trung, ghế êm ái', 'Standard'),
+        (2, 'P-Room 2', 49, 'Phòng chiếu lớn với công nghệ 3D', '3D'),
+        (2, 'P-Room 3', 25, 'Phòng chiếu VIP, ghế ngả 120 độ', 'VIP'),
+
+        -- Phòng cho Star Cinema (cinema_id = 3)
+        (3, 'S-Room 1', 64, 'Phòng chiếu siêu lớn, màn hình 4K', 'IMAX'),
+        (3, 'S-Room 2', 36, 'Phòng chiếu thường, giá cả phải chăng', 'Standard'),
+        (3, 'S-Room 3', 49, 'Phòng chiếu cao cấp với trải nghiệm 4DX', '4DX');
+
+    -- 3. Thêm ghế cho mỗi phòng
+    DO $$
+    DECLARE
+        r record;
+        row_letter char(1);
+        seat_name text;
+        seat_type text;
+        num_rows integer;
+        num_cols integer;
+    BEGIN
+        -- Duyệt qua từng phòng
+        FOR r IN SELECT id, seats FROM rooms LOOP
+            -- Xác định số hàng và số cột dựa trên tổng số ghế
+            CASE
+                WHEN r.seats = 25 THEN
+                    num_rows := 5;
+                    num_cols := 5;
+                WHEN r.seats = 36 THEN
+                    num_rows := 6;
+                    num_cols := 6;
+                WHEN r.seats = 42 THEN
+                    num_rows := 6;
+                    num_cols := 7;
+                WHEN r.seats = 49 THEN
+                    num_rows := 7;
+                    num_cols := 7;
+                WHEN r.seats = 64 THEN
+                    num_rows := 8;
+                    num_cols := 8;
+                ELSE
+                    num_rows := 5;
+                    num_cols := 5;
+            END CASE;
+
+            -- Tạo ghế cho mỗi phòng
+            FOR i IN 1..num_rows LOOP
+                row_letter := chr(64 + i); -- A=65 trong ASCII, nên 64+1=A, 64+2=B, v.v.
+
+                FOR j IN 1..num_cols LOOP
+                    seat_name := row_letter || j::text;
+
+                    -- Xác định loại ghế (VIP ở giữa, thường ở các vị trí khác)
+                    IF i > num_rows/3 AND i <= 2*num_rows/3 AND j > num_cols/3 AND j <= 2*num_cols/3 THEN
+                        seat_type := 'VIP';
+                    ELSE
+                        seat_type := 'Standard';
+                    END IF;
+
+                    -- Thêm ghế vào bảng seats
+                    INSERT INTO seats (room_id, name, type)
+                    VALUES (r.id, seat_name, seat_type);
+                END LOOP;
+            END LOOP;
+        END LOOP;
+    END $$;
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: location-db-reset
+spec:
+  template:
+    spec:
+      containers:
+      - name: location-db-reset
+        image: postgres:15
+        command: ["/bin/bash", "-c"]
+        args:
+        - |
+          PGPASSWORD=$POSTGRES_PASSWORD psql -h location-db -U location_user -d location_db -f /sql/reset.sql
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: location-db-password
+        volumeMounts:
+        - name: sql-volume
+          mountPath: /sql
+      volumes:
+      - name: sql-volume
+        configMap:
+          name: location-db-reset-sql
+      restartPolicy: Never
+  backoffLimit: 4

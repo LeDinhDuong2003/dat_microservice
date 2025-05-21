@@ -1,0 +1,49 @@
+# k8s/databases/movie-db.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-db
+spec:
+  selector:
+    matchLabels:
+      app: movie-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: movie-db
+    spec:
+      containers:
+      - image: postgres:15
+        name: movie-db
+        env:
+        - name: POSTGRES_DB
+          value: movie_db
+        - name: POSTGRES_USER
+          value: movie_user
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: movie-db-password
+        ports:
+        - containerPort: 5432
+          name: postgres
+        volumeMounts:
+        - name: movie-db-persistent-storage
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: movie-db-persistent-storage
+        persistentVolumeClaim:
+          claimName: movie-db-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: movie-db
+spec:
+  ports:
+  - port: 5432
+  selector:
+    app: movie-db

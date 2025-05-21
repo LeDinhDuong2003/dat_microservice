@@ -1,0 +1,58 @@
+# k8s/init/movie-db-init-job.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: movie-db-init
+spec:
+  template:
+    spec:
+      containers:
+      - name: movie-db-init
+        image: postgres:15
+        command: ["/bin/bash", "-c"]
+        args:
+        - |
+          PGPASSWORD=$POSTGRES_PASSWORD psql -h movie-db -U movie_user -d movie_db -c "
+          CREATE TABLE IF NOT EXISTS movies (
+            id SERIAL PRIMARY KEY,
+            name TEXT NOT NULL,
+            img TEXT NOT NULL,
+            genre TEXT,
+            label TEXT,
+            duration INTEGER,
+            description TEXT,
+            status TEXT
+          );
+
+          INSERT INTO movies (name, img, genre, label, duration, description, status)
+          VALUES 
+          ('The Shawshank Redemption', 'https://static2.vieon.vn/vieplay-image/poster_v4/2024/11/06/sh1krr6i_660x946-shawshank.jpg', 'Drama', 'Classic', 142, 'Hai người đàn ông tìm thấy sự cứu chuộc và tình bạn trong những năm tháng ở nhà tù Shawshank.', 'active'),
+          
+          ('Inception', 'https://i1-vnexpress.vnecdn.net/2022/03/18/inceptionjpg-1647590997.jpg?w=330&h=495&q=100&dpr=1&fit=crop&s=izavUyS8PASL98snOpBQnQ', 'Sci-Fi', 'Blockbuster', 148, 'Một tên trộm có khả năng đột nhập vào giấc mơ của người khác được giao nhiệm vụ cấy một ý tưởng vào tâm trí của CEO.', 'active'),
+          
+          ('Parasite', 'https://m.media-amazon.com/images/M/MV5BYjk1Y2U4MjQtY2ZiNS00OWQyLWI3MmYtZWUwNmRjYWRiNWNhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'Drama, Comedy', 'Oscar Winner', 132, 'Một gia đình nghèo khó xâm nhập vào cuộc sống của một gia đình giàu có, với những hậu quả không ngờ tới.', 'active'),
+          
+          ('The Dark Knight', 'https://upload.wikimedia.org/wikipedia/vi/2/2d/Poster_phim_K%E1%BB%B5_s%C4%A9_b%C3%B3ng_%C4%91%C3%AAm_2008.jpg', 'Action, Crime', 'Superhero', 152, 'Batman phải đối mặt với kẻ thù đáng sợ nhất của mình, Joker, khi Gotham rơi vào hỗn loạn.', 'active'),
+          
+          ('Pulp Fiction', 'https://m.media-amazon.com/images/M/MV5BYTViYTE3ZGQtNDBlMC00ZTAyLTkyODMtZGRiZDg0MjA2YThkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'Crime, Drama', 'Cult Classic', 154, 'Câu chuyện đan xen của những tên gangster, một võ sĩ quyền anh, và một cặp cướp nhà hàng ở Los Angeles.', 'active'),
+          
+          ('Spirited Away', 'https://m.media-amazon.com/images/M/MV5BNTEyNmEwOWUtYzkyOC00ZTQ4LTllZmUtMjk0Y2YwOGUzYjRiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 'Animation, Fantasy', 'Family', 125, 'Một cô bé 10 tuổi phải làm việc trong một khu nghỉ dưỡng dành cho các vị thần khi cha mẹ cô bị biến thành lợn.', 'active'),
+          
+          ('Avengers: Endgame', 'https://upload.wikimedia.org/wikipedia/vi/2/2d/Avengers_Endgame_bia_teaser.jpg', 'Action, Adventure', 'Superhero', 181, 'Sau các sự kiện tàn khốc của Infinity War, các Avengers còn lại tập hợp lại để đảo ngược hành động của Thanos.', 'active'),
+          
+          ('The Godfather', 'https://play-lh.googleusercontent.com/ZucjGxDqQ-cHIN-8YA1HgZx7dFhXkfnz73SrdRPmOOHEax08sngqZMR_jMKq0sZuv5P7-T2Z2aHJ1uGQiys', 'Crime, Drama', 'Classic', 175, 'Câu chuyện về gia đình mafia Corleone dưới sự lãnh đạo của Don Vito Corleone và sau đó là con trai ông, Michael.', 'active'),
+          
+          ('Your Name', 'https://upload.wikimedia.org/wikipedia/vi/thumb/b/b3/Your_Name_novel.jpg/330px-Your_Name_novel.jpg', 'Animation, Romance', 'International', 106, 'Hai người lạ thấy cuộc sống của họ bị đan xen khi họ phát hiện ra rằng đôi khi họ hoán đổi cơ thể trong giấc ngủ.', 'active'),
+          
+          ('Get Out', 'https://m.media-amazon.com/images/M/MV5BMjUxMDQwNjcyNl5BMl5BanBnXkFtZTgwNzcwMzc0MTI@._V1_.jpg', 'Horror, Mystery', 'Thriller', 104, 'Một người đàn ông da đen đi thăm gia đình bạn gái của mình và phát hiện ra sự thật đáng sợ về gia đình cô.', 'coming soon')
+          
+          ON CONFLICT (id) DO NOTHING;
+          "
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: movie-db-password
+      restartPolicy: Never
+  backoffLimit: 4

@@ -1,0 +1,14 @@
+# k8s/config.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: service-config
+data:
+  MOVIE_SERVICE_URL: "http://movie-service:3000"
+  LOCATION_SERVICE_URL: "http://location-service:3001"
+  SCHEDULE_SERVICE_URL: "http://schedule-service:3002"
+  API_GATEWAY_URL: "http://api-gateway:3003"
+  RABBITMQ_URL: "amqp://$(RABBITMQ_USER):$(RABBITMQ_PASSWORD)@rabbitmq:5672"
+  EMAIL_SERVICE: "gmail"
+  EMAIL_TO: "tieuhoangdat@gmail.com"
+  LOG_LEVEL: "info"

@@ -1,0 +1,44 @@
+# k8s/init/schedule-db-init-job.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: schedule-db-init
+spec:
+  template:
+    spec:
+      containers:
+      - name: schedule-db-init
+        image: postgres:15
+        command: ["/bin/bash", "-c"]
+        args:
+        - |
+          PGPASSWORD=$POSTGRES_PASSWORD psql -h schedule-db -U schedule_user -d schedule_db -c "
+          -- Tạo bảng schedules nếu chưa tồn tại
+          CREATE TABLE IF NOT EXISTS schedules (
+            id SERIAL PRIMARY KEY,
+            movie_id INTEGER NOT NULL,
+            room_id INTEGER NOT NULL,
+            start_time TIMESTAMP NOT NULL,
+            end_time TIMESTAMP NOT NULL,
+            normal_seat_price DECIMAL(10, 2) NOT NULL DEFAULT 0,
+            vip_seat_price DECIMAL(10, 2) NOT NULL DEFAULT 0
+          );
+          
+          -- Thêm dữ liệu mẫu
+          INSERT INTO schedules (movie_id, room_id, start_time, end_time, normal_seat_price, vip_seat_price)
+          VALUES 
+            (1, 1, '2025-05-20 10:00:00', '2025-05-20 12:30:00', 80000, 120000),
+            (2, 2, '2025-05-20 13:00:00', '2025-05-20 15:00:00', 75000, 110000),
+            (3, 3, '2025-05-20 16:00:00', '2025-05-20 18:00:00', 85000, 130000),
+            (1, 2, '2025-05-21 10:00:00', '2025-05-21 12:30:00', 80000, 120000),
+            (2, 1, '2025-05-21 14:00:00', '2025-05-21 16:00:00', 75000, 110000)
+          ON CONFLICT (id) DO NOTHING;
+          "
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: schedule-db-password
+      restartPolicy: Never
+  backoffLimit: 4

@@ -1,0 +1,49 @@
+# k8s/databases/schedule-db.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: schedule-db
+spec:
+  selector:
+    matchLabels:
+      app: schedule-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: schedule-db
+    spec:
+      containers:
+      - image: postgres:15
+        name: schedule-db
+        env:
+        - name: POSTGRES_DB
+          value: schedule_db
+        - name: POSTGRES_USER
+          value: schedule_user
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: schedule-db-password
+        ports:
+        - containerPort: 5432
+          name: postgres
+        volumeMounts:
+        - name: schedule-db-persistent-storage
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: schedule-db-persistent-storage
+        persistentVolumeClaim:
+          claimName: schedule-db-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: schedule-db
+spec:
+  ports:
+  - port: 5432
+  selector:
+    app: schedule-db

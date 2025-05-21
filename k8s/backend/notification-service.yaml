@@ -1,0 +1,56 @@
+# k8s/backend/notification-service.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-service
+spec:
+  selector:
+    matchLabels:
+      app: notification-service
+  template:
+    metadata:
+      labels:
+        app: notification-service
+    spec:
+      containers:
+      - name: notification-service
+        image: cinema/notification-service:latest  # Thay bằng image của bạn
+        imagePullPolicy: Never
+        env:
+        - name: RABBITMQ_URL
+          value: "amqp://cinema_app:cinema_password@rabbitmq:5672"
+        - name: RABBITMQ_USER
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq-credentials
+              key: rabbitmq-user
+        - name: RABBITMQ_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq-credentials
+              key: rabbitmq-password
+        - name: EMAIL_SERVICE
+          valueFrom:
+            configMapKeyRef:
+              name: service-config
+              key: EMAIL_SERVICE
+        - name: EMAIL_USER
+          valueFrom:
+            secretKeyRef:
+              name: email-credentials
+              key: email-user
+        - name: EMAIL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: email-credentials
+              key: email-password
+        - name: EMAIL_TO
+          valueFrom:
+            configMapKeyRef:
+              name: service-config
+              key: EMAIL_TO
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: service-config
+              key: LOG_LEVEL
